@@ -19,7 +19,6 @@ ChessRenderer::ChessRenderer(Chessboard& chboard) : board(chboard){
     ROOK_WHITE = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/ROOK_WHITE.png"));
     KNIGHT_WHITE = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/KNIGHT_WHITE.png"));
     PAWN_WHITE = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/PAWN_WHITE.png"));
-
 }
 
 ChessRenderer::~ChessRenderer(){
