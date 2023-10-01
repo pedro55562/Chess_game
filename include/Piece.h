@@ -1,3 +1,13 @@
+//
+// *****************************************************
+// *                                                   *
+// * O Lord, Thank you for your goodness in our lives. *
+// *     Please bless this code to our compilers.      *
+// *                     Amen.                         *
+// *                                                   *
+// *****************************************************
+//
+
 #ifndef PIECE_H
 #define PIECE_H 
 #include "Chess_constants.h"

@@ -1,3 +1,13 @@
+//
+// *****************************************************
+// *                                                   *
+// * O Lord, Thank you for your goodness in our lives. *
+// *     Please bless this code to our compilers.      *
+// *                     Amen.                         *
+// *                                                   *
+// *****************************************************
+//
+
 #include "../include/Queen.h"
 
 Queen::Queen(int QueenColor) : Piece(QUEEN, QueenColor) {}

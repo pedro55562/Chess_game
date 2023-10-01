@@ -38,6 +38,7 @@ int main (){
     if (board.retPiece(movefrom.row,movefrom.col).getType() != EMPTY){
       moveto = graphicboard.handleMouseInput(shouldclose);
     }    
-    
+    board.movepiece(movefrom, moveto);
+  
   } 
 }

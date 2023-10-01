@@ -1,3 +1,13 @@
+//
+// *****************************************************
+// *                                                   *
+// * O Lord, Thank you for your goodness in our lives. *
+// *     Please bless this code to our compilers.      *
+// *                     Amen.                         *
+// *                                                   *
+// *****************************************************
+//
+
 #ifndef CHESSBOARD_H
 #define CHESSBOARD_H
 
@@ -27,14 +37,10 @@ struct position{
     int col;
 };
 
-
-
-
-
-
 class Chessboard{
 private:
     vector<vector<Piece>> board;
+
 public:
 // Monta o tabuleiro a partir de um dado defaultFen
 // vide: https://www.chess.com/terms/fen-chess
@@ -46,7 +52,7 @@ public:
     
 
 // move a piece a partir de um clique na tela
-    void movepiece(const position from);
+    void movepiece(const position from, const position to );
 };
 
 #endif 

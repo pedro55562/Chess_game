@@ -1,10 +1,20 @@
+//
+// *****************************************************
+// *                                                   *
+// * O Lord, Thank you for your goodness in our lives. *
+// *     Please bless this code to our compilers.      *
+// *                     Amen.                         *
+// *                                                   *
+// *****************************************************
+//
+
 #include "../include/Chessboard.h"
-#include "Chess_constants.h"
 
 #include <string>
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include "Chessboard.h"
 
 using std::vector;
 using std::string;
@@ -90,4 +100,21 @@ void Chessboard::   printBoard()const{
 }
 Piece Chessboard::retPiece(const int row, const int col) const{
     return (Piece) board[row][col];
+}
+void Chessboard::movepiece(const position from, const position to){
+    if ( retPiece(from.row , from.col).getType() == EMPTY ){
+        return;
+    }
+    if ( retPiece(from.row , from.col).getColor() == retPiece(to.row , to.col).getColor() ){
+        return;
+    }
+    if ( retPiece(from.row , from.col).getType() != EMPTY && retPiece(to.row , to.col).getType() == EMPTY ){
+        board[to.row][to.col] = board[from.row][from.col];
+        board[from.row][from.col] = Piece(EMPTY,EMPTY);
+    }
+    if ( retPiece(from.row , from.col).getType() != EMPTY && retPiece(to.row , to.col).getType() != EMPTY ){
+        board[to.row][to.col] = Piece(EMPTY,EMPTY);
+        board[to.row][to.col] = board[from.row][from.col];
+        board[from.row][from.col] = Piece(EMPTY,EMPTY);
+    }    
 }

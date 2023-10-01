@@ -1,3 +1,13 @@
+//
+// *****************************************************
+// *                                                   *
+// * O Lord, Thank you for your goodness in our lives. *
+// *     Please bless this code to our compilers.      *
+// *                     Amen.                         *
+// *                                                   *
+// *****************************************************
+//
+
 #include "../include/Piece.h"
 
 Piece::Piece(int type1, int color1){
