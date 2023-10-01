@@ -21,7 +21,6 @@ const Color dark = {210, 140, 69, 255};
 const Color light = {255, 207, 159, 255};
 const Color noInt = {0, 0, 0, 100};
 
-
 class ChessRenderer {
 public:
     ChessRenderer(Chessboard& chessboard);
@@ -31,6 +30,8 @@ public:
     void renderBoard(const int row, const int col)const;
     void renderPiece(const Texture2D pieceTexture,const int col, const int row)const; 
     bool shouldClose()const;
+    position handleMouseInput();
+
 
 private:
     Chessboard& board; 

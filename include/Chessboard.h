@@ -22,13 +22,20 @@ const int BOARD_SIZE  = 8;
 
 const string defaultFen = "8/5k2/3p4/1p1Pp2p/pP2Pp1P/P4P1K/8/8"; 
 
-class Chessboard
-{
+struct position{
+    int row;
+    int col;
+};
+
+
+
+
+
+
+class Chessboard{
 private:
     vector<vector<Piece>> board;
-    
 public:
-
 // Monta o tabuleiro a partir de um dado defaultFen
 // vide: https://www.chess.com/terms/fen-chess
     Chessboard();

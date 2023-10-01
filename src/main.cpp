@@ -24,12 +24,15 @@ using std::cout;
 using std::endl;
 
 int main (){
-  
+  position temp ;
   Chessboard board;
   board.printBoard();
   ChessRenderer graphicboard(board);
   while ( graphicboard.shouldClose() != true){
     graphicboard.render();
+    temp = graphicboard.handleMouseInput();
+    if ( temp.row != -1 && temp.col != -1){
+
+    }
   }
-  return 0;
 }
