@@ -1,10 +1,49 @@
 #include "../include/Chessboard.h"
+#include "Bishop.h"
+#include "Pawn.h"
+#include "Knight.h"
+#include "Queen.h"
+#include "King.h"
+#include "Rook.h"
+#include "Piece.h"
+#include "Chess_constants.h"
+
+#include <string>
+#include <vector>
 #include <iostream>
+#include <sstream>
 
 using std::vector;
 using std::string;
 using std::cout;
 using std::endl;
+
+vector<vector<char>> lerFEN(const string& fen) {
+    vector<vector<char>> tabuleiro(BOARD_SIZE, vector<char>(BOARD_SIZE, ' '));
+    int row = 0;
+    int col = 0;
+
+    for (char c : fen) {
+        if (c == ' ') {
+            break; 
+        } else if (c == '/') {
+            row++;
+            col = 0;
+        } else if (isdigit(c)) {
+            int espacosVazios = c - '0';
+            for (int i = 0; i < espacosVazios; i++) {
+                tabuleiro[row][col] = '.';
+                col++;
+            }
+        } else {
+            // Preenche com a peça
+            tabuleiro[row][col] = c;
+            col++;
+        }
+    }
+
+    return tabuleiro;
+}
 
 
 Chessboard::Chessboard(){
