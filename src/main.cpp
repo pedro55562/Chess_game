@@ -24,15 +24,20 @@ using std::cout;
 using std::endl;
 
 int main (){
-  position temp ;
   Chessboard board;
   board.printBoard();
   ChessRenderer graphicboard(board);
-  while ( graphicboard.shouldClose() != true){
-    graphicboard.render();
-    temp = graphicboard.handleMouseInput();
-    if ( temp.row != -1 && temp.col != -1){
-      cout << endl << temp.row << "   " << temp.col << endl;
+  bool shouldclose = false;
+  while ( !shouldclose ){
+    if ( graphicboard.shouldClose() == true){
+      shouldclose = true;
     }
-  }
+    graphicboard.render();
+    position movefrom = graphicboard.handleMouseInput(shouldclose);
+    position moveto;
+    if (board.retPiece(movefrom.row,movefrom.col).getType() != EMPTY){
+      moveto = graphicboard.handleMouseInput(shouldclose);
+    }    
+    
+  } 
 }

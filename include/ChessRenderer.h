@@ -30,7 +30,7 @@ public:
     void renderBoard(const int row, const int col)const;
     void renderPiece(const Texture2D pieceTexture,const int col, const int row)const; 
     bool shouldClose()const;
-    position handleMouseInput();
+    position handleMouseInput(bool& shouldclse);
 
 
 private:

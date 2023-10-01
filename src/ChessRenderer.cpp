@@ -8,6 +8,8 @@ using std::endl;
 ChessRenderer::ChessRenderer(Chessboard &chboard) : board(chboard)
 {
   InitWindow(pixels, pixels, "Chess");
+
+  SetTargetFPS(60);  
   // LOAD TEXTURES
   BISHOP_BLACK = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/BISHOP_BLACK.png"));
   KING_BLACK = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/KING_BLACK.png"));
@@ -50,7 +52,6 @@ void ChessRenderer::render()
     for (int col = 0; col < size; col++)
     {
       renderBoard(row, col);
-      handleMouseInput();
       switch (board.retPiece(row, col).getType() | board.retPiece(row, col).getColor())
       {
       case KING | BLACKn:
@@ -121,18 +122,28 @@ bool ChessRenderer::shouldClose() const
   return WindowShouldClose();
 }
 
-position ChessRenderer::handleMouseInput()
+position ChessRenderer::handleMouseInput(bool& close)
 {
   position aux = {-1, -1};
-  if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-  {
-    int X_pos = GetMouseX();
-    int Y_pos = GetMouseY();
-    int col = X_pos / squaresize;
-    int row = Y_pos / squaresize;
-    aux.row = row;
-    aux.col = col;
-    return aux;
+  bool click = false;
+  while( click != true ){
+
+    if(shouldClose() == true){
+      close = true;
+      break;
+    }
+    render();
+
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && IsCursorOnScreen())
+    { 
+      int X_pos = GetMouseX();
+      int Y_pos = GetMouseY();
+      int col = X_pos / squaresize;
+      int row = Y_pos / squaresize;
+      aux.row = row;
+      aux.col = col;
+      click = true;
+    }
   }
-  return aux; 
+  return aux;
 }
