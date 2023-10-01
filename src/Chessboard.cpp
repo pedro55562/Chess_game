@@ -6,8 +6,6 @@ using std::string;
 using std::cout;
 using std::endl;
 
-const string defaultFen = "rnb2qnr/pp1p4/6p1/2p1k1B1/2K1p3/3P4/PPP2PPP/RN3B1R"; 
-
 
 Chessboard::Chessboard(){
     board.resize(8, vector<Piece>(8));

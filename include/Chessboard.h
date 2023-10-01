@@ -17,7 +17,9 @@ using std::vector;
 using std::string;
 
 const int BOARD_SIZE  = 8;
-//const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"; 
+
+const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"; 
+
 class Chessboard
 {
 private:
