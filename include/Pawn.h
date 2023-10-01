@@ -11,7 +11,7 @@
 #ifndef PAWN_H
 #define PAWN_H
 
-
+#include "Chessboard.h"
 #include "Chess_constants.h"
 #include "Piece.h"
 
@@ -19,7 +19,7 @@ class Pawn : public Piece {
 public:
     Pawn(int pawncolor);
 
-    bool isValidMove(int fromX, int fromY, int toX, int toY) const;
+    bool isValidMove(position from, position to) const;
     void promote(); 
 };
 

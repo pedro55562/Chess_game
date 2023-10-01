@@ -12,8 +12,14 @@
 
 Pawn::Pawn(int pawncolor): Piece(PAWN, pawncolor){}
 
-bool Pawn::isValidMove(int fromX, int fromY, int toX, int toY) const{
-    bool verify = fromX || fromY || toX || toY;
+bool Pawn::isValidMove(position from, position to) const{
+    bool verify = false;
+    if (getColor() == WHITEn){
+        if (to.col == from.col && to.col == from.col + 1){
+            verify = true;
+        }
+    }
+    
     return verify;
 }
 

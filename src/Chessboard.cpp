@@ -108,7 +108,7 @@ void Chessboard::movepiece(const position from, const position to){
     if ( retPiece(from.row , from.col).getColor() == retPiece(to.row , to.col).getColor() ){
         return;
     }
-    if ( retPiece(from.row , from.col).getType() != EMPTY && retPiece(to.row , to.col).getType() == EMPTY ){
+    if ( retPiece(from.row , from.col).getType() != EMPTY && retPiece(to.row , to.col).getType() == EMPTY){
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY,EMPTY);
     }
