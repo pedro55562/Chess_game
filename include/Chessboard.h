@@ -11,19 +11,15 @@
 #ifndef CHESSBOARD_H
 #define CHESSBOARD_H
 
-#include "Bishop.h"
-#include "Pawn.h"
-#include "Knight.h"
-#include "Queen.h"
-#include "King.h"
-#include "Rook.h"
-#include "Piece.h"
-#include "Chess_constants.h"
-
 #include <string>
 #include <vector>
 #include <iostream>
 #include <sstream>
+
+struct position{
+    int row;
+    int col;
+};
 
 using std::vector;
 using std::string;
@@ -32,10 +28,14 @@ const int BOARD_SIZE  = 8;
 
 const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"; 
 
-struct position{
-    int row;
-    int col;
-};
+#include "Bishop.h"
+#include "Pawn.h"
+#include "Knight.h"
+#include "Queen.h"
+#include "King.h"
+#include "Rook.h"
+#include "Piece.h"
+#include "Chess_constants.h"
 
 class Chessboard{
 private:
