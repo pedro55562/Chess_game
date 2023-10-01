@@ -27,8 +27,8 @@ const int size = 8;
 const int pixels = 800;
 const int squaresize = pixels/size;
 
-const Color dark = {210, 140, 69, 255};
-const Color light = {255, 207, 159, 255};
+const Color dark = {161,111,90,255};
+const Color light = {235,210,184,255};
 const Color noInt = {0, 0, 0, 100};
 
 class ChessRenderer {

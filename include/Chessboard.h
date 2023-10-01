@@ -30,7 +30,7 @@ using std::string;
 
 const int BOARD_SIZE  = 8;
 
-const string defaultFen = "8/5k2/3p4/1p1Pp2p/pP2Pp1P/P4P1K/8/8"; 
+const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"; 
 
 struct position{
     int row;
