@@ -20,7 +20,7 @@ using std::string;
 
 const int BOARD_SIZE  = 8;
 
-const string defaultFen = "r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1"; 
+const string defaultFen = "8/5k2/3p4/1p1Pp2p/pP2Pp1P/P4P1K/8/8"; 
 
 class Chessboard
 {
