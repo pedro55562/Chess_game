@@ -5,7 +5,7 @@ BUILD_DIR = build
 SRC_DIR = src
 INCLUDE_DIR = include
 ASSETS_DIR = assets
-EXE = main
+EXE = ChessGame
 
 # Diretório de assets
 ASSETS = $(ASSETS_DIR)/images/chess_pieces/ $(ASSETS_DIR)/sounds/ $(ASSETS_DIR)/fonts/ $(ASSETS_DIR)/config/ $(ASSETS_DIR)/other_assets/
