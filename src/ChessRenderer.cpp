@@ -124,21 +124,15 @@ bool ChessRenderer::shouldClose() const
 position ChessRenderer::handleMouseInput()
 {
   position aux = {-1, -1};
-  if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+  if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+  {
     int X_pos = GetMouseX();
     int Y_pos = GetMouseY();
     int col = X_pos / squaresize;
     int row = Y_pos / squaresize;
-    Piece temp = board.retPiece(row, col);
-    if (temp.getColor() != EMPTY){
-      aux.row = row;
-      aux.col = col;
-      return aux;
-    }
-    else{
-      return aux;
-    }
-  } else if ( !IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-     return aux;
+    aux.row = row;
+    aux.col = col;
+    return aux;
   }
+  return aux; 
 }

@@ -32,7 +32,7 @@ int main (){
     graphicboard.render();
     temp = graphicboard.handleMouseInput();
     if ( temp.row != -1 && temp.col != -1){
-
+      cout << endl << temp.row << "   " << temp.col << endl;
     }
   }
 }
