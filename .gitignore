@@ -34,4 +34,4 @@
 # diretório build e .vscode
 /build/
 .vscode/
-main
+ChessGame
