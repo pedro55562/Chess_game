@@ -26,15 +26,11 @@ debug: CXXFLAGS += $(DEBUG_FLAGS)
 debug: $(EXE)
 
 clean:
-	rm -rf $(BUILD_DIR)
-
-clean_build:
 	rm -rf $(BUILD_DIR)/*
-
+	rm ChessGame
+	
 run:
 	./$(EXE)
 
-assets:
-	mkdir -p $(ASSETS)
 
-.PHONY: debug clean clean_build run assets
+.PHONY: debug clean run
