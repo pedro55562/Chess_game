@@ -25,7 +25,6 @@ using std::endl;
 
 int main (){
   Chessboard board;
-  board.printBoard();
   ChessRenderer graphicboard(board);
   bool shouldclose = false;
   while ( !shouldclose ){
@@ -33,13 +32,13 @@ int main (){
       shouldclose = true;
     }
     graphicboard.render();
+    board.printBoard();
     position movefrom = graphicboard.handleMouseInput(shouldclose);
     position moveto;
     if (board.retPiece(movefrom.row, movefrom.col).getType() != EMPTY){
       moveto = graphicboard.handleMouseInput(shouldclose);
     }    
     board.movepiece(movefrom, moveto);
-    board.printBoard();
   } 
   
 }
