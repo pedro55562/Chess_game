@@ -39,6 +39,6 @@ int main (){
       moveto = graphicboard.handleMouseInput(shouldclose);
     }    
     board.movepiece(movefrom, moveto);
-  } 
-  
+  }
+   
 }

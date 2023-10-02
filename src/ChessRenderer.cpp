@@ -19,7 +19,7 @@ ChessRenderer::ChessRenderer(Chessboard &chboard) : board(chboard)
 {
   InitWindow(pixels, pixels, "Chess");
 
-  SetTargetFPS(60);  
+  SetTargetFPS(30);  
   // LOAD TEXTURES
   BISHOP_BLACK = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/BISHOP_BLACK.png"));
   KING_BLACK = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/KING_BLACK.png"));
