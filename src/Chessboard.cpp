@@ -82,10 +82,10 @@ Chessboard::Chessboard()
                 board[i][j] = Piece(EMPTY, EMPTY);
                 break;
             case 'p':
-                board[i][j] = Piece(PAWN, BLACKn);
+                board[i][j] = Pawn(BLACKn);
                 break;
             case 'P':
-                board[i][j] = Piece(PAWN, WHITEn);
+                board[i][j] = Pawn(WHITEn);
                 break;
             case 'r':
                 board[i][j] = Piece(ROOK, BLACKn);
@@ -137,7 +137,7 @@ void Chessboard::printBoard() const
     {
         for (int j = 0; j < 8; j++)
         {
-            cout << board[i][j].getColor() << " ";
+            cout << board[i][j].numofmoves << " ";
         }
         cout << endl;
     }
@@ -146,7 +146,7 @@ void Chessboard::printBoard() const
 
 Piece Chessboard::retPiece(const int row, const int col) const
 {
-    return (Piece)board[row][col];
+    return board[row][col];
 }
 
 void Chessboard::movepiece(const position from, const position to)
@@ -161,11 +161,13 @@ void Chessboard::movepiece(const position from, const position to)
     }
     if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() == EMPTY && isValidMove(from,to) )
     {
+        board[from.row][from.col].numofmoves++; 
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
     }
     if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() != EMPTY)
     {
+        board[from.row][from.col].numofmoves++; 
         board[to.row][to.col] = Piece(EMPTY, EMPTY);
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
@@ -175,8 +177,7 @@ void Chessboard::movepiece(const position from, const position to)
 bool Chessboard::isValidMove(const position from, const position to) const
 {
     bool verify = false;
-    int piece = retPiece(from.row, from.col).getType();
-    switch ( piece )
+    switch ( retPiece(from.row, from.col).getType() )
     {
     case KING :{
         verify = true;
@@ -184,7 +185,7 @@ bool Chessboard::isValidMove(const position from, const position to) const
     }
     case PAWN:{
         Pawn p( retPiece(from.row, from.col).getColor() );
-        verify = p.isValidPawnMove(from,to);
+        verify = p.isValidPawnMove(from,to, board[from.row][from.col].numofmoves );
         break;
     }
     case BISHOP:{

@@ -35,10 +35,11 @@ int main (){
     graphicboard.render();
     position movefrom = graphicboard.handleMouseInput(shouldclose);
     position moveto;
-    if (board.retPiece(movefrom.row,movefrom.col).getType() != EMPTY){
+    if (board.retPiece(movefrom.row, movefrom.col).getType() != EMPTY){
       moveto = graphicboard.handleMouseInput(shouldclose);
     }    
     board.movepiece(movefrom, moveto);
-  
+    board.printBoard();
   } 
+  
 }

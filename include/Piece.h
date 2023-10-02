@@ -15,17 +15,21 @@
 class Piece{
     private:
         int type;
-        int color;
+        int color;  
     public:
+        int numofmoves;
+
         Piece(int type1, int color1);
 
         Piece();
-
+        
         // retorna o tipo
         int getType() const;
 
         // retorna a cor
         int getColor() const;
+
+        int numof()const;
 };
 
 #endif 
