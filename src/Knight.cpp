@@ -12,7 +12,10 @@
 
 Knight::Knight(int KingColor) : Piece(KNIGHT,KingColor) {}
 
-bool Knight::isValidMove(int fromX, int fromY, int toX, int toY) const{
-    bool verify = fromX || fromY || toX || toY;
-    return verify;
+bool Knight::isValidKnightMove(int fromX, int fromY, int toX, int toY) const{
+    bool ver = false;
+    int dx = abs(fromX - toX);
+    int dy = abs(fromY - toY);
+    ver = ( ((dx == 1) && (dy==2)) || ((dx  == 2) && (dy==1)) );
+    return ver ;
 }

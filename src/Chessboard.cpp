@@ -207,7 +207,9 @@ bool Chessboard::isValidMove(const position from, const position to) const
         break;
     }
     case KNIGHT:{
-        verify = true;
+        Knight n( retPiece(from.row, from.col).getColor() );
+        verify = n.isValidKnightMove(from.col, from.row, to.col,to.row);
+        break;
         break;
     }
     case ROOK:{
