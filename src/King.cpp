@@ -12,8 +12,9 @@
 
 King::King(int KingColor): Piece(KING,KingColor){}
 
-bool King::isValidMove(int fromX, int fromY, int toX, int toY) const
+bool King::isValidKingMove(int fromX, int fromY, int toX, int toY) const
 {
-    bool verify = fromX || fromY || toX || toY;
-    return verify;
+    int dx = abs(fromX - toX);
+    int dy = abs(fromY - toY);
+    return (dx == 1 && dy == 0)||(dx == 0 && dy == 1)||( dx == 1 && dy == 1);
 }

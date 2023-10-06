@@ -190,12 +190,13 @@ bool Chessboard::isValidMove(const position from, const position to) const
     switch ( retPiece(from.row, from.col).getType() )
     {
     case KING :{
-        verify = true;
+        King k( retPiece(from.row, from.col).getColor() );
+        verify = k.isValidKingMove(from.col, from.row, to.col,to.row);
         break;
     }
     case PAWN:{
         Pawn p( retPiece(from.row, from.col).getColor() );
-        verify = p.isValidPawnMove(from,to, board[from.row][from.col].numofmoves );
+        verify = p.isValidPawnMove(from,to, board[from.row][from.col].numof() );
         break;
     }
     case BISHOP:{

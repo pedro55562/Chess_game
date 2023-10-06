@@ -14,11 +14,13 @@
 #include "Piece.h"
 #include "Chess_constants.h"
 
+#include <cmath>
+
 class King : public Piece{
     public:
         
         King(int KingColor);
-        bool isValidMove(int fromX, int fromY, int toX, int toY) const;
+        bool isValidKingMove(int fromX, int fromY, int toX, int toY) const;
 };
 
 #endif
