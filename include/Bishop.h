@@ -11,6 +11,8 @@
 #ifndef BISHOP_H
 #define BISHOP_H
 
+#include <cmath>
+
 #include "Chess_constants.h"
 #include "Piece.h"
 
@@ -19,7 +21,7 @@ class Bishop : public Piece{
 public:
     Bishop(int BishopColor);
     
-    bool isValidMove(int fromX, int fromY, int toX, int toY) const;
+    bool isValidBishopMove(int fromX, int fromY, int toX, int toY) const;
 
 };
 

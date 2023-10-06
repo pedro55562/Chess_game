@@ -199,7 +199,8 @@ bool Chessboard::isValidMove(const position from, const position to) const
         break;
     }
     case BISHOP:{
-        verify = true;
+        Bishop b( retPiece(from.row, from.col).getColor() );
+        verify = b.isValidBishopMove(from.col, from.row, to.col,to.row);
         break;
     }
     case QUEEN:{
@@ -209,7 +210,6 @@ bool Chessboard::isValidMove(const position from, const position to) const
     case KNIGHT:{
         Knight n( retPiece(from.row, from.col).getColor() );
         verify = n.isValidKnightMove(from.col, from.row, to.col,to.row);
-        break;
         break;
     }
     case ROOK:{
