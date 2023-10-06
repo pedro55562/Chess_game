@@ -12,7 +12,8 @@
 
 Rook::Rook(int RookColor) : Piece(ROOK, RookColor){}
 
-bool Rook::isValidMove(int fromX, int fromY, int toX, int toY) const{
-    bool verify = fromX || fromY || toX || toY;
-    return verify;
+bool Rook::isValidRookMove(int fromX, int fromY, int toX, int toY) const{
+    int dx = abs(fromX - toX);
+    int dy = abs(fromY - toY);
+    return (dx != 0 && dy == 0)||(dx == 0 && dy != 0);
 }

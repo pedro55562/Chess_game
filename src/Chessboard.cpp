@@ -213,7 +213,8 @@ bool Chessboard::isValidMove(const position from, const position to) const
         break;
     }
     case ROOK:{
-        verify = true;
+        Rook r( retPiece(from.row, from.col).getColor() );
+        verify = r.isValidRookMove(from.col, from.row, to.col,to.row);
         break;
     }
     }
