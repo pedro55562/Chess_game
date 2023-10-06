@@ -205,7 +205,8 @@ bool Chessboard::isValidMove(const position from, const position to) const
         break;
     }
     case QUEEN:{
-        verify = true;
+        Queen q( retPiece(from.row, from.col).getColor() );
+        verify = q.isValidQueenMove(from.col, from.row, to.col,to.row);
         break;
     }
     case KNIGHT:{
