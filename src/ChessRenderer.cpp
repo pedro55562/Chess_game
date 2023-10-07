@@ -12,8 +12,7 @@
 
 #include <raylib.h>
 #include <iostream>
-using std::cout;
-using std::endl;
+
 
 ChessRenderer::ChessRenderer(Chessboard &chboard) : board(chboard)
 {
@@ -134,7 +133,7 @@ bool ChessRenderer::shouldClose() const
 
 position ChessRenderer::handleMouseInput(bool& close)
 {
-  position aux = {-1, -1};
+  position aux = {0,0};
   bool click = false;
   while( click != true ){
 
@@ -153,7 +152,9 @@ position ChessRenderer::handleMouseInput(bool& close)
       aux.row = row;
       aux.col = col;
       click = true;
+      return aux;
     }
   }
+  std::cout << aux.col << " " << aux.row << std::endl;
   return aux;
 }

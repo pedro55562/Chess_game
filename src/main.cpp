@@ -35,7 +35,7 @@ int main (){
     board.printBoard();
     position movefrom = graphicboard.handleMouseInput(shouldclose);
     position moveto;
-    if (board.retPiece(movefrom.row, movefrom.col).getType() != EMPTY){
+    if (board.retPiece(movefrom.row, movefrom.col).getType() != EMPTY && shouldclose == false){
       moveto = graphicboard.handleMouseInput(shouldclose);
     }    
     board.movepiece(movefrom, moveto);
