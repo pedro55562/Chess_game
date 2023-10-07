@@ -13,24 +13,24 @@
 Pawn::Pawn(int pawncolor): Piece(PAWN, pawncolor){
 }
 
-bool Pawn::isValidPawnMove(position from, position to, int numofmoves) {
+bool Pawn::isValidPawnMove(position from, position to, int numofmoves, int toCollor) {
     bool verify = false;
 
 
-    if ( numofmoves > 0 ) {
+    if ( numofmoves > 0 && toCollor == EMPTY) {
         if (getColor() == WHITEn) {
             if (to.col == from.col && to.row == from.row - 1) {
                 verify = true;
             }
         }
-        if (getColor() == BLACKn) {
+        if (getColor() == BLACKn && toCollor == EMPTY) {
             if (to.col == from.col && to.row == from.row + 1) {
                 verify = true;
             }
         }
     }
 
-    if (numofmoves == 0) {
+    if (numofmoves == 0 && toCollor == EMPTY) {
         if (getColor() == WHITEn) {
             if (to.col == from.col && to.row == from.row - 1) {
                 verify = true;
@@ -48,6 +48,22 @@ bool Pawn::isValidPawnMove(position from, position to, int numofmoves) {
             }
         }
     }
+    if (verify == false && toCollor != EMPTY){
+
+        if (getColor() == BLACKn && toCollor == WHITEn){
+            if (((to.col == from.col + 1) || (to.col == from.col - 1)) && (to.row == from.row + 1))
+            {
+                verify = true;
+            }
+        }
+        if (getColor() == WHITEn && toCollor == BLACKn){
+            if ( ((to.col == from.col + 1) || (to.col == from.col - 1)) && (to.row == from.row - 1))
+            {
+                verify = true;
+            }
+        }
+    }
+    
 
     return verify;
 }

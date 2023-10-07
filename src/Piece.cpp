@@ -9,7 +9,6 @@
 //
 
 #include "../include/Piece.h"
-#include "Piece.h"
 
 Piece::Piece(int type1, int color1){
     type = type1;
@@ -34,4 +33,8 @@ int Piece::getColor() const{
 
 int Piece::numof() const{
     return numofmoves;
+}
+
+void Piece::adnumof(){
+    numofmoves++;
 }

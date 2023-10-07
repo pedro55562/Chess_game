@@ -146,7 +146,7 @@ void Chessboard::printBoard() const
     {
         for (int j = 0; j < 8; j++)
         {
-            cout << board[i][j].numofmoves << " ";
+            cout << board[i][j].numof() << " ";
         }
         cout << endl;
     }
@@ -171,13 +171,13 @@ void Chessboard::movepiece(const position from, const position to)
     }
     if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() == EMPTY && isValidMove(from,to) )
     {
-        board[from.row][from.col].numofmoves++; 
+        board[from.row][from.col].adnumof(); 
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
     }
     if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() != EMPTY && isValidMove(from,to) )
     {
-        board[from.row][from.col].numofmoves++; 
+        board[from.row][from.col].adnumof(); 
         board[to.row][to.col] = Piece(EMPTY, EMPTY);
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
@@ -196,7 +196,7 @@ bool Chessboard::isValidMove(const position from, const position to) const
     }
     case PAWN:{
         Pawn p( retPiece(from.row, from.col).getColor() );
-        verify = p.isValidPawnMove(from,to, board[from.row][from.col].numof() );
+        verify = p.isValidPawnMove( from,to, board[from.row][from.col].numof() , board[to.row][to.col].getColor() );
         break;
     }
     case BISHOP:{

@@ -18,7 +18,7 @@
 class Pawn : public Piece {
 public:
     Pawn(int pawncolor);
-    bool isValidPawnMove(position from, position to, int numofmoves);
+    bool isValidPawnMove(position from, position to, int numofmoves, int toCollor);
     void promote(); 
 };
 
