@@ -265,8 +265,8 @@ bool Chessboard::isPathClear(const position from, const position to) const
     // movimento pelas cols
     if (dCol != 0 && dRow == 0){
         int dirCol = (dCol > 0)? 1 : -1;
-        for (int curCol = from.row + dirCol; curCol != to.row; ){
-            if ( retPiece(curCol, from.col).getType() != EMPTY){
+        for (int curCol = from.col + dirCol; curCol != to.col; ){
+            if ( retPiece(from.row, curCol).getType() != EMPTY){
                 return false;
             }
             curCol+=dirCol;
