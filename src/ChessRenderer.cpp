@@ -152,9 +152,9 @@ position ChessRenderer::handleMouseInput(bool& close)
       aux.row = row;
       aux.col = col;
       click = true;
+      std::cout << aux.col << " " << aux.row << std::endl;
       return aux;
     }
   }
-  std::cout << aux.col << " " << aux.row << std::endl;
   return aux;
 }
