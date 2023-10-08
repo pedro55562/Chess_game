@@ -10,10 +10,12 @@
 
 #include "../include/Chessboard.h"
 
+#include <cmath>
 #include <string>
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include "Chessboard.h"
 
 using std::cout;
 using std::endl;
@@ -186,39 +188,89 @@ void Chessboard::movepiece(const position from, const position to)
 
 bool Chessboard::isValidMove(const position from, const position to) const
 {
+    bool isitclear = isPathClear(from,to);
     bool verify = false;
     switch ( retPiece(from.row, from.col).getType() )
     {
     case KING :{
         King k( retPiece(from.row, from.col).getColor() );
         verify = k.isValidKingMove(from.col, from.row, to.col,to.row);
+        return verify && isitclear;
         break;
     }
     case PAWN:{
         Pawn p( retPiece(from.row, from.col).getColor() );
         verify = p.isValidPawnMove( from,to, board[from.row][from.col].numof() , board[to.row][to.col].getColor() );
+        return verify && isitclear;
         break;
     }
     case BISHOP:{
         Bishop b( retPiece(from.row, from.col).getColor() );
         verify = b.isValidBishopMove(from.col, from.row, to.col,to.row);
+        return verify && isitclear;
         break;
     }
     case QUEEN:{
         Queen q( retPiece(from.row, from.col).getColor() );
         verify = q.isValidQueenMove(from.col, from.row, to.col,to.row);
+        return verify && isitclear;
         break;
     }
     case KNIGHT:{
         Knight n( retPiece(from.row, from.col).getColor() );
         verify = n.isValidKnightMove(from.col, from.row, to.col,to.row);
+        return verify;
         break;
     }
     case ROOK:{
         Rook r( retPiece(from.row, from.col).getColor() );
         verify = r.isValidRookMove(from.col, from.row, to.col,to.row);
+        return verify && isitclear;
         break;
     }
     }
-    return verify;
+}
+
+bool Chessboard::isPathClear(const position from, const position to) const
+{
+    cout << endl <<" FROM: " << from.row << " " << from.col << endl;
+    cout << endl <<" TO: " << to.row << " " << to.col << endl << endl;
+
+
+    int dRow = to.row - from.row;
+    int dCol = to.col - from.col;
+
+    // movimento diagonal:
+    if (abs(dRow) == abs(dCol)){
+        int dirRow = (dRow > 0)? 1 : -1;
+        int dirCol = (dCol > 0)? 1 : -1;
+        for (int curRow = from.row + dirRow, curCol = from.col + dirCol; curRow != to.row && curCol != to.col ; ){
+            if ( retPiece(curRow, curCol).getType() != EMPTY){
+                return false;
+            }
+            curRow+=dirRow;
+            curCol+=dirCol;
+        }
+    }
+    // movimento pelas rows
+    if (dCol == 0 && dRow != 0){
+        int dirRow = (dRow > 0)? 1 : -1;
+        for (int curRow = from.row + dirRow; curRow != to.row; ){
+            if ( retPiece(curRow, from.col).getType() != EMPTY){
+                return false;
+            }
+            curRow+=dirRow;
+        }
+    }
+    // movimento pelas cols
+    if (dCol != 0 && dRow == 0){
+        int dirCol = (dCol > 0)? 1 : -1;
+        for (int curCol = from.row + dirCol; curCol != to.row; ){
+            if ( retPiece(curCol, from.col).getType() != EMPTY){
+                return false;
+            }
+            curCol+=dirCol;
+        }
+    }
+    return true;
 }

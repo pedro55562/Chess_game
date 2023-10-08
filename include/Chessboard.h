@@ -58,6 +58,8 @@ public:
 
 // verifica se o movimento é valido
     bool isValidMove(const position from, const position to )const;
+// verifica se o caminho esta limpo
+    bool isPathClear(const position from, const position to )const;
 };
 
 #endif 
