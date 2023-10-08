@@ -12,6 +12,7 @@
 #include "../include/Chessboard.h"
 #include "Chess_constants.h"
 
+#include <list>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -19,6 +20,7 @@
 #include <raylib.h>
 
 using std::vector;
+using std::list;
 using std::string;
 using std::cout;
 using std::endl;
@@ -32,13 +34,15 @@ int main (){
       shouldclose = true;
     }
     graphicboard.render();
-    board.printBoard();
+   // board.printBoard();
     position movefrom = graphicboard.handleMouseInput(shouldclose);
+    graphicboard.updateSelectedPiece(movefrom);
     position moveto;
     if (board.retPiece(movefrom.row, movefrom.col).getType() != EMPTY && shouldclose == false){
       moveto = graphicboard.handleMouseInput(shouldclose);
-    }    
+    }
     board.movepiece(movefrom, moveto);
+    graphicboard.updateSelectedPiece(movefrom);
   }
    
 }

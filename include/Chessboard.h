@@ -15,6 +15,7 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include <list>
 
 struct position{
     int row;
@@ -22,6 +23,7 @@ struct position{
 };
 
 using std::vector;
+using std::list;
 using std::string;
 
 const int BOARD_SIZE  = 8;
@@ -60,6 +62,8 @@ public:
     bool isValidMove(const position from, const position to )const;
 // verifica se o caminho esta limpo
     bool isPathClear(const position from, const position to )const;
+// retorna uma lista com destinos possiveis para uma dada peça
+    list<position> getPossibleDestinations(const position from);
 };
 
 #endif 

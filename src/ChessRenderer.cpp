@@ -10,12 +10,18 @@
 
 #include "../include/ChessRenderer.h"
 
+#include <list>
 #include <raylib.h>
 #include <iostream>
+#include "ChessRenderer.h"
 
+using std::list;
 
 ChessRenderer::ChessRenderer(Chessboard &chboard) : board(chboard)
 {
+  SelectedPiece = {0,0};
+  isPieceSelected = false;
+
   InitWindow(pixels, pixels, "Chess");
 
   SetTargetFPS(30);  
@@ -56,11 +62,29 @@ ChessRenderer::~ChessRenderer()
 void ChessRenderer::render()
 {
   BeginDrawing();
+  // renderiza o fundo
   for (int row = 0; row < size; row++)
   {
     for (int col = 0; col < size; col++)
     {
       renderBoard(row, col);
+    }
+  }
+  // renderiza os mov. possiveis
+  for (int row = 0; row < size; row++)
+  {
+    for (int col = 0; col < size; col++)
+    {
+      if ( isPieceSelected){
+        renderPossibleDestinations(SelectedPiece);
+      }    
+    }
+  }
+  // renderiza as pieces
+  for (int row = 0; row < size; row++)
+  {
+    for (int col = 0; col < size; col++)
+    { 
       switch (board.retPiece(row, col).getType() | board.retPiece(row, col).getColor())
       {
       case KING | BLACKn:
@@ -118,6 +142,15 @@ void ChessRenderer::renderBoard(const int row, const int col) const
   }
 }
 
+void ChessRenderer::renderPossibleDestinations(const position from) const
+{
+  list<position> lista_ = board.getPossibleDestinations(from);
+  for( auto pmove : lista_){
+    DrawRectangle(pmove.col * squaresize, pmove.row * squaresize, squaresize, squaresize, red_);
+  }
+}
+
+
 void ChessRenderer::renderPiece(const Texture2D pieceTexture, const int col, const int row) const
 {
   Vector2 temp;
@@ -156,4 +189,9 @@ position ChessRenderer::handleMouseInput(bool& close)
     }
   }
   return aux;
+}
+void ChessRenderer::updateSelectedPiece(const position from)
+{
+  SelectedPiece = from;
+  isPieceSelected = !isPieceSelected;
 }

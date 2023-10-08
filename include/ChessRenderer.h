@@ -29,7 +29,7 @@ const int squaresize = pixels/size;
 
 const Color dark = {161,111,90,255};
 const Color light = {235,210,184,255};
-const Color noInt = {0, 0, 0, 100};
+const Color red_ = {230, 41, 55, 60};
 
 class ChessRenderer {
 public:
@@ -38,13 +38,17 @@ public:
 
     void render(); 
     void renderBoard(const int row, const int col)const;
+    void renderPossibleDestinations(const position from)const;
     void renderPiece(const Texture2D pieceTexture,const int col, const int row)const; 
     bool shouldClose()const;
     position handleMouseInput(bool& shouldclse);
+    void updateSelectedPiece( const position from);
 
 
 private:
     Chessboard& board; 
+    position SelectedPiece;
+    bool isPieceSelected;
 
 // TEXTURE
 Texture2D BISHOP_BLACK;
