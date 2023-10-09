@@ -45,23 +45,25 @@ private:
 
 public:
 
-// Monta o tabuleiro a partir de um dado defaultFen
+// Monta o tabuleiro a partir de um dado FEN
 // vide: https://www.chess.com/terms/fen-chess
     Chessboard();
 
 //Imprime o tabuleiro na saida padrao
     void printBoard()const;
 
-// retorna Piece
+// retorna Piece em uma dada posicao
     Piece retPiece(const int row, const int col) const;
 
-// move a piece a partir de um clique na tela
+// move a piece a partir das cordenadas de origem e destino
     void movepiece(const position from, const position to );
 
 // verifica se o movimento é valido
     bool isValidMove(const position from, const position to )const;
+
 // verifica se o caminho esta limpo
     bool isPathClear(const position from, const position to )const;
+
 // retorna uma lista com destinos possiveis para uma dada peça
     list<position> getPossibleDestinations(const position from);
 };
