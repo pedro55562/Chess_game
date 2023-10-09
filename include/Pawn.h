@@ -15,11 +15,14 @@
 #include "Chess_constants.h"
 #include "Piece.h"
 
+#include <cmath>
+
 class Pawn : public Piece {
 public:
+
     Pawn(int pawncolor);
-    bool isValidPawnMove(position from, position to, int numofmoves, int toCollor);
-    void promote(); 
+
+    bool isValidPawnMove(position from, position to, int toCollor);
 };
 
 #endif 

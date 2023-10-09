@@ -10,63 +10,53 @@
 
 #include "../include/Pawn.h"
 
-Pawn::Pawn(int pawncolor): Piece(PAWN, pawncolor){
+Pawn::Pawn(int pawncolor) : Piece(PAWN, pawncolor)
+{
 }
 
-bool Pawn::isValidPawnMove(position from, position to, int numofmoves, int toCollor) {
-    bool verify = false;
+bool Pawn::isValidPawnMove(position from, position to, int toCollor)
+{
+    int drow = to.row - from.row;
+    int dcol = to.col - from.col;
 
-
-    if ( numofmoves > 0 && toCollor == EMPTY) {
-        if (getColor() == WHITEn) {
-            if (to.col == from.col && to.row == from.row - 1) {
-                verify = true;
-            }
-        }
-        if (getColor() == BLACKn && toCollor == EMPTY) {
-            if (to.col == from.col && to.row == from.row + 1) {
-                verify = true;
-            }
-        }
-    }
-
-    if (numofmoves == 0 && toCollor == EMPTY) {
-        if (getColor() == WHITEn) {
-            if (to.col == from.col && to.row == from.row - 1) {
-                verify = true;
-            }   
-            if (to.col == from.col && to.row == from.row - 2) {
-                verify = true;
-            }
-        }
-        if (getColor() == BLACKn) {
-            if (to.col == from.col && to.row == from.row + 1) {
-                verify = true;
-            }
-            if (to.col == from.col && to.row == from.row + 2) {
-                verify = true;
-            }
-        }
-    }
-    if (verify == false && toCollor != EMPTY){
-
-        if (getColor() == BLACKn && toCollor == WHITEn){
-            if (((to.col == from.col + 1) || (to.col == from.col - 1)) && (to.row == from.row + 1))
+    if (dcol == 0 && toCollor == EMPTY)
+    {
+        if (getColor() == BLACKn)
+        {
+            if (from.row == 1)
             {
-                verify = true;
+                return (drow == 1) || (drow == 2);
+            }
+            if (from.row != 1)
+            {
+                return (drow == 1);
             }
         }
-        if (getColor() == WHITEn && toCollor == BLACKn){
-            if ( ((to.col == from.col + 1) || (to.col == from.col - 1)) && (to.row == from.row - 1))
+        if (getColor() == WHITEn)
+        {
+            if (from.row == 6)
             {
-                verify = true;
+                return (drow == -1) || (drow == -2);
+            }
+            if (from.row != 1)
+            {
+                return (drow == -1);
             }
         }
     }
-    
 
-    return verify;
+    if ((toCollor != EMPTY) && (dcol == 1 || dcol == -1) )
+    {
+
+        if (getColor() == BLACKn && toCollor == WHITEn)
+        {
+            return ((dcol == 1)||(dcol == -1))&&(drow == 1);
+        }
+        if (getColor() == WHITEn && toCollor == BLACKn)
+        {
+            return ((dcol == 1)||(dcol == -1))&&(drow == -1);
+        }
+    }
+
+    return false;
 }
-
-void Pawn::promote() {}
-

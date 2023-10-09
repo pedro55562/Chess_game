@@ -144,15 +144,6 @@ void Chessboard::printBoard() const
         }
         cout << endl;
     }
-    cout << endl;
-    for (int i = 0; i < 8; i++)
-    {
-        for (int j = 0; j < 8; j++)
-        {
-            cout << board[i][j].numof() << " ";
-        }
-        cout << endl;
-    }
     cout << "--------";
     cout << endl;
 }
@@ -190,6 +181,11 @@ void Chessboard::movepiece(const position from, const position to)
 bool Chessboard::isValidMove(const position from, const position to) const
 {   
     bool isitclear = isPathClear(from, to);
+
+    if ( isitclear == false){
+        return false;
+    }
+
     bool verify = false;
     switch (retPiece(from.row, from.col).getType())
     {
@@ -203,7 +199,7 @@ bool Chessboard::isValidMove(const position from, const position to) const
     case PAWN:
     {
         Pawn p(retPiece(from.row, from.col).getColor());
-        verify = p.isValidPawnMove(from, to, board[from.row][from.col].numof(), board[to.row][to.col].getColor());
+        verify = p.isValidPawnMove(from, to, board[to.row][to.col].getColor());
         return verify && isitclear;
         break;
     }
