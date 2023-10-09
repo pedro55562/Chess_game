@@ -34,7 +34,6 @@ int main (){
       shouldclose = true;
     }
     graphicboard.render();
-   // board.printBoard();
     position movefrom = graphicboard.handleMouseInput(shouldclose);
     graphicboard.updateSelectedPiece(movefrom);
     position moveto;

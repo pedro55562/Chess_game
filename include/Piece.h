@@ -10,6 +10,7 @@
 
 #ifndef PIECE_H
 #define PIECE_H 
+
 #include "Chess_constants.h"
 
 class Piece{
@@ -23,10 +24,10 @@ class Piece{
 
         Piece();
         
-        // retorna o tipo
+        // retorna o tipo de piece
         int getType() const;
 
-        // retorna a cor
+        // retorna a cor de piece
         int getColor() const;
 
         int numof()const;

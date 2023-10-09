@@ -18,8 +18,10 @@
 
 class King : public Piece{
     public:
-        
+        // construtor da piece rei
         King(int KingColor);
+
+        // verificas se o movimento do rei é valido
         bool isValidKingMove(int fromX, int fromY, int toX, int toY) const;
 };
 
