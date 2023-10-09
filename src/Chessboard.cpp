@@ -165,13 +165,11 @@ void Chessboard::movepiece(const position from, const position to)
     }
     if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() == EMPTY && isValidMove(from, to))
     {
-        board[from.row][from.col].adnumof();
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
     }
     if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() != EMPTY && isValidMove(from, to))
     {
-        board[from.row][from.col].adnumof();
         board[to.row][to.col] = Piece(EMPTY, EMPTY);
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
@@ -186,49 +184,42 @@ bool Chessboard::isValidMove(const position from, const position to) const
         return false;
     }
 
-    bool verify = false;
     switch (retPiece(from.row, from.col).getType())
     {
     case KING:
     {
         King k(retPiece(from.row, from.col).getColor());
-        verify = k.isValidKingMove(from.col, from.row, to.col, to.row);
-        return verify && isitclear;
+        return k.isValidKingMove(from.col, from.row, to.col, to.row);
         break;
     }
     case PAWN:
     {
         Pawn p(retPiece(from.row, from.col).getColor());
-        verify = p.isValidPawnMove(from, to, board[to.row][to.col].getColor());
-        return verify && isitclear;
+        return p.isValidPawnMove(from, to, board[to.row][to.col].getColor());
         break;
     }
     case BISHOP:
     {
         Bishop b(retPiece(from.row, from.col).getColor());
-        verify = b.isValidBishopMove(from.col, from.row, to.col, to.row);
-        return verify && isitclear;
+        return b.isValidBishopMove(from.col, from.row, to.col, to.row);
         break;
     }
     case QUEEN:
     {
         Queen q(retPiece(from.row, from.col).getColor());
-        verify = q.isValidQueenMove(from.col, from.row, to.col, to.row);
-        return verify && isitclear;
+        return q.isValidQueenMove(from.col, from.row, to.col, to.row);
         break;
     }
     case KNIGHT:
     {
         Knight n(retPiece(from.row, from.col).getColor());
-        verify = n.isValidKnightMove(from.col, from.row, to.col, to.row);
-        return verify;
+        return n.isValidKnightMove(from.col, from.row, to.col, to.row);
         break;
     }
     case ROOK:
     {
         Rook r(retPiece(from.row, from.col).getColor());
-        verify = r.isValidRookMove(from.col, from.row, to.col, to.row);
-        return verify && isitclear;
+        return r.isValidRookMove(from.col, from.row, to.col, to.row);
         break;
     }
     }

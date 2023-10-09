@@ -17,7 +17,6 @@ class Piece{
     private:
         int type;
         int color;  
-        int numofmoves;
     public:
 
         Piece(int type1, int color1);
@@ -29,10 +28,6 @@ class Piece{
 
         // retorna a cor de piece
         int getColor() const;
-
-        int numof()const;
-
-        void adnumof();
 };
 
 #endif 
