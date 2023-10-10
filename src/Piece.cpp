@@ -13,13 +13,11 @@
 Piece::Piece(int type1, int color1){
     type = type1;
     color = color1;
-    numofmoves = 0;
 }
 
 Piece::Piece(){
     type = EMPTY;
     color = EMPTY;
-    numofmoves = 0;
 }
 
 int Piece::getType() const
@@ -31,10 +29,3 @@ int Piece::getColor() const{
     return color;
 }
 
-int Piece::numof() const{
-    return numofmoves;
-}
-
-void Piece::adnumof(){
-    numofmoves++;
-}
