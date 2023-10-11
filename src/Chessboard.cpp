@@ -78,8 +78,82 @@ Chessboard::Chessboard()
         }
         else if (isdigit(c))
         {
-            int emptySpaces = c - '0';
-            for (int i = 0; i < emptySpaces; i++)
+            int espacosVazios = c - '0';
+            for (int i = 0; i < espacosVazios; i++)
+            {
+                board[row][col] = Piece(EMPTY, EMPTY);
+                col++;
+            }
+        }
+        else
+        {
+            switch (c)
+            {
+            case 'p':
+                board[row][col] = Pawn(BLACKn);
+                break;
+            case 'P':
+                board[row][col] = Pawn(WHITEn);
+                break;
+            case 'r':
+                board[row][col] = Piece(ROOK, BLACKn);
+                break;
+            case 'R':
+                board[row][col] = Piece(ROOK, WHITEn);
+                break;
+            case 'n':
+                board[row][col] = Piece(KNIGHT, BLACKn);
+                break;
+            case 'N':
+                board[row][col] = Piece(KNIGHT, WHITEn);
+                break;
+            case 'b':
+                board[row][col] = Piece(BISHOP, BLACKn);
+                break;
+            case 'B':
+                board[row][col] = Piece(BISHOP, WHITEn);
+                break;
+            case 'q':
+                board[row][col] = Piece(QUEEN, BLACKn);
+                break;
+            case 'Q':
+                board[row][col] = Piece(QUEEN, WHITEn);
+                break;
+            case 'k':
+                board[row][col] = Piece(KING, BLACKn);
+                break;
+            case 'K':
+                board[row][col] = Piece(KING, WHITEn);
+                break;
+            }
+
+            col++;
+        }
+    }
+}
+
+//
+Chessboard::Chessboard(const string& fen)
+{
+    board.resize(BOARD_SIZE, vector<Piece>(BOARD_SIZE));
+    int row = 0;
+    int col = 0;
+
+    for (char c : fen)
+    {
+        if (c == ' ')
+        {
+            break;
+        }
+        else if (c == '/')
+        {
+            row++;
+            col = 0;
+        }
+        else if (isdigit(c))
+        {
+            int espacosVazios = c - '0';
+            for (int i = 0; i < espacosVazios; i++)
             {
                 board[row][col] = Piece(EMPTY, EMPTY);
                 col++;

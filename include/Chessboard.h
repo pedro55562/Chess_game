@@ -45,9 +45,12 @@ private:
 
 public:
 
-// Monta o tabuleiro a partir de um dado FEN
+// Monta o tabuleiro a partir do defaultFEN
 // vide: https://www.chess.com/terms/fen-chess
     Chessboard();
+
+// Monta o tabuleiro a partir de um FEN
+    Chessboard(const string& fen);
 
 //Imprime o tabuleiro na saida padrao
     void printBoard()const;
