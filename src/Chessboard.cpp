@@ -61,6 +61,7 @@ vector<vector<char>> lerFEN(const string &fen)
 
 Chessboard::Chessboard()
 {
+    isWhiteTurn = true;
     board.resize(BOARD_SIZE, vector<Piece>(BOARD_SIZE));
     int row = 0;
     int col = 0;
@@ -248,12 +249,16 @@ void Chessboard::movepiece(const position from, const position to)
     {
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
+        isWhiteTurn = !isWhiteTurn;
+        return;
     }
     if (retPiece(from.row, from.col).getType() != EMPTY && retPiece(to.row, to.col).getType() != EMPTY && isValidMove(from, to))
     {
         board[to.row][to.col] = Piece(EMPTY, EMPTY);
         board[to.row][to.col] = board[from.row][from.col];
         board[from.row][from.col] = Piece(EMPTY, EMPTY);
+        isWhiteTurn = !isWhiteTurn;
+        return;
     }
 }
 
@@ -263,6 +268,12 @@ bool Chessboard::isValidMove(const position from, const position to) const
 
     if (isitclear == false)
     {
+        return false;
+    }
+    if ( isWhiteTurn && retPiece(from.row, from.col).getColor() == BLACKn){
+        return false;
+    }
+    if ( !isWhiteTurn && retPiece(from.row, from.col).getColor() == WHITEn){
         return false;
     }
 

@@ -41,8 +41,11 @@ const string defaultFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 
 class Chessboard{
 private:
+//    
     vector<vector<Piece>> board;
 
+//
+    bool isWhiteTurn;
 public:
 
 // Monta o tabuleiro a partir do defaultFEN
