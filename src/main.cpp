@@ -27,7 +27,7 @@ using std::endl;
 
 int main (){
   string fen = "n2q4/p2kP1p1/1b2r3/6p1/p2n2p1/r7/3P2Q1/5K2";
-  Chessboard board(fen);
+  Chessboard board;
   ChessRenderer graphicboard(board);
   while ( !graphicboard.shouldClose() ){
 
