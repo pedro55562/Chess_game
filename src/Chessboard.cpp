@@ -23,18 +23,6 @@ using std::list;
 using std::string;
 using std::vector;
 
-void imprimirTabuleiro(const vector<vector<char>> &tabuleiro)
-{
-    for (int i = 0; i < BOARD_SIZE; i++)
-    {
-        for (int j = 0; j < BOARD_SIZE; j++)
-        {
-            std::cout << tabuleiro[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
 vector<vector<char>> lerFEN(const string &fen)
 {
     vector<vector<char>> tabuleiro(BOARD_SIZE, vector<char>(BOARD_SIZE, ' '));
@@ -73,54 +61,73 @@ vector<vector<char>> lerFEN(const string &fen)
 
 Chessboard::Chessboard()
 {
-    board.resize(8, vector<Piece>(8));
-    vector<vector<char>> auxboard = lerFEN(defaultFen);
-    for (int i = 0; i < BOARD_SIZE; i++)
+    board.resize(BOARD_SIZE, vector<Piece>(BOARD_SIZE));
+    int row = 0;
+    int col = 0;
+
+    for (char c : defaultFen)
     {
-        for (int j = 0; j < BOARD_SIZE; j++)
+        if (c == ' ')
         {
-            switch (auxboard[i][j])
+            break;
+        }
+        else if (c == '/')
+        {
+            row++;
+            col = 0;
+        }
+        else if (isdigit(c))
+        {
+            int emptySpaces = c - '0';
+            for (int i = 0; i < emptySpaces; i++)
             {
-            case '.':
-                board[i][j] = Piece(EMPTY, EMPTY);
-                break;
+                board[row][col] = Piece(EMPTY, EMPTY);
+                col++;
+            }
+        }
+        else
+        {
+            switch (c)
+            {
             case 'p':
-                board[i][j] = Pawn(BLACKn);
+                board[row][col] = Pawn(BLACKn);
                 break;
             case 'P':
-                board[i][j] = Pawn(WHITEn);
+                board[row][col] = Pawn(WHITEn);
                 break;
             case 'r':
-                board[i][j] = Piece(ROOK, BLACKn);
+                board[row][col] = Piece(ROOK, BLACKn);
                 break;
             case 'R':
-                board[i][j] = Piece(ROOK, WHITEn);
+                board[row][col] = Piece(ROOK, WHITEn);
                 break;
             case 'n':
-                board[i][j] = Piece(KNIGHT, BLACKn);
+                board[row][col] = Piece(KNIGHT, BLACKn);
                 break;
             case 'N':
-                board[i][j] = Piece(KNIGHT, WHITEn);
+                board[row][col] = Piece(KNIGHT, WHITEn);
                 break;
             case 'b':
-                board[i][j] = Piece(BISHOP, BLACKn);
+                board[row][col] = Piece(BISHOP, BLACKn);
                 break;
             case 'B':
-                board[i][j] = Piece(BISHOP, WHITEn);
+                board[row][col] = Piece(BISHOP, WHITEn);
                 break;
             case 'q':
-                board[i][j] = Piece(QUEEN, BLACKn);
+                board[row][col] = Piece(QUEEN, BLACKn);
                 break;
             case 'Q':
-                board[i][j] = Piece(QUEEN, WHITEn);
+                board[row][col] = Piece(QUEEN, WHITEn);
                 break;
             case 'k':
-                board[i][j] = Piece(KING, BLACKn);
+                board[row][col] = Piece(KING, BLACKn);
                 break;
             case 'K':
-                board[i][j] = Piece(KING, WHITEn);
+                board[row][col] = Piece(KING, WHITEn);
                 break;
             }
+
+            col++;
         }
     }
 }
