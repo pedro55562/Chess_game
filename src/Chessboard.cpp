@@ -177,10 +177,11 @@ void Chessboard::movepiece(const position from, const position to)
 }
 
 bool Chessboard::isValidMove(const position from, const position to) const
-{   
+{
     bool isitclear = isPathClear(from, to);
 
-    if ( isitclear == false){
+    if (isitclear == false)
+    {
         return false;
     }
 
@@ -227,8 +228,9 @@ bool Chessboard::isValidMove(const position from, const position to) const
 }
 
 bool Chessboard::isPathClear(const position from, const position to) const
-{   
-    if (from.row == to.row && from.col == to.col){
+{
+    if (from.row == to.row && from.col == to.col)
+    {
         return false;
     }
     int dRow = to.row - from.row;
@@ -241,7 +243,8 @@ bool Chessboard::isPathClear(const position from, const position to) const
         int dirCol = (dCol > 0) ? 1 : -1;
         for (int curRow = from.row + dirRow, curCol = from.col + dirCol; curRow != to.row && curCol != to.col; curRow += dirRow, curCol += dirCol)
         {
-            if ( curRow > -1 && curRow < 8 && curCol > -1 && curCol < 8 ){
+            if (curRow > -1 && curRow < 8 && curCol > -1 && curCol < 8)
+            {
                 if (retPiece(curRow, curCol).getType() != EMPTY)
                 {
                     return false;
@@ -255,7 +258,8 @@ bool Chessboard::isPathClear(const position from, const position to) const
         int dirRow = (dRow > 0) ? 1 : -1;
         for (int curRow = from.row + dirRow; curRow != to.row; curRow += dirRow)
         {
-            if ( curRow > -1 && curRow < 8){
+            if (curRow > -1 && curRow < 8)
+            {
                 if (retPiece(curRow, from.col).getType() != EMPTY)
                 {
                     return false;
@@ -267,9 +271,10 @@ bool Chessboard::isPathClear(const position from, const position to) const
     if (dCol != 0 && dRow == 0)
     {
         int dirCol = (dCol > 0) ? 1 : -1;
-        for (int curCol = from.col + dirCol; curCol != to.col;curCol += dirCol)
+        for (int curCol = from.col + dirCol; curCol != to.col; curCol += dirCol)
         {
-            if (curCol > -1 && curCol < 8 ){
+            if (curCol > -1 && curCol < 8)
+            {
                 if (retPiece(from.row, curCol).getType() != EMPTY)
                 {
                     return false;
@@ -279,7 +284,6 @@ bool Chessboard::isPathClear(const position from, const position to) const
     }
     return true;
 }
-
 
 list<position> Chessboard::getPossibleDestinations(const position from)
 {
@@ -291,14 +295,15 @@ list<position> Chessboard::getPossibleDestinations(const position from)
 
     case KING:
     {
-        vector<int> kdirRow = {0,1, -1};
-        vector<int> kdirCol = {0,1, -1};
+        vector<int> kdirRow = {0, 1, -1};
+        vector<int> kdirCol = {0, 1, -1};
         for (int dr : kdirRow)
         {
             for (int dc : kdirCol)
             {
-                position dest = {from.row + dr , from.col + dc };
-                if ( dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1 ){
+                position dest = {from.row + dr, from.col + dc};
+                if (dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1)
+                {
                     if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from.row, from.col).getColor())
                     {
                         lista_.push_back(dest);
@@ -311,14 +316,15 @@ list<position> Chessboard::getPossibleDestinations(const position from)
 
     case PAWN:
     {
-        vector<int> PdirRow = {-1,-2,1, 2};
-        vector<int> PdirCol = {0,1, -1};
+        vector<int> PdirRow = {-1, -2, 1, 2};
+        vector<int> PdirCol = {0, 1, -1};
         for (int dr : PdirRow)
         {
             for (int dc : PdirCol)
             {
-                position dest = {from.row + dr , from.col + dc };
-                if ( dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1 ){
+                position dest = {from.row + dr, from.col + dc};
+                if (dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1)
+                {
                     if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from.row, from.col).getColor())
                     {
                         lista_.push_back(dest);
@@ -343,6 +349,10 @@ list<position> Chessboard::getPossibleDestinations(const position from)
                     {
                         lista_.push_back(dest);
                     }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -361,6 +371,10 @@ list<position> Chessboard::getPossibleDestinations(const position from)
                 {
                     lista_.push_back(dest);
                 }
+                else
+                {
+                    break;
+                }
             }
         }
         // movimento horizontal ( pelas cols)
@@ -372,6 +386,10 @@ list<position> Chessboard::getPossibleDestinations(const position from)
                 if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from.row, from.col).getColor())
                 {
                     lista_.push_back(dest);
+                }
+                else
+                {
+                    break;
                 }
             }
         }
@@ -388,28 +406,26 @@ list<position> Chessboard::getPossibleDestinations(const position from)
                     {
                         lista_.push_back(dest);
                     }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
-
 
         break;
     }
     case KNIGHT:
     {
-        vector<int> ndirRow = {-1 , 1 , 2 , -2};
-        vector<int> ndirCol = {-1 , 1 , 2 , -2};
-        for (int dr : ndirRow)
+        vector<position> validmoves = {{-1, 2}, {-1, -2}, {1, 2}, {1, -2}, {-2, 1}, {-2, -1}, {2, 1}, {2, -1}};
+        for (int i = 0; i < (int) validmoves.size(); i++)
         {
-            for (int dc : ndirCol)
-            {
-                for (int curRow = from.row + dr, curCol = from.col + dc; curRow < BOARD_SIZE && curRow > -1 && curCol < BOARD_SIZE && curCol > -1; curCol += dc, curRow += dr)
+            position dest = {from.row + validmoves[i].row , from.col + validmoves[i].col };
+            if( dest.row < 8 && dest.row > -1 && dest.col < 8 && dest.col > -1 ){ 
+                if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from.row, from.col).getColor())
                 {
-                    position dest = {curRow, curCol};
-                    if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from.row, from.col).getColor())
-                    {
-                        lista_.push_back(dest);
-                    }
+                    lista_.push_back(dest);
                 }
             }
         }
@@ -428,6 +444,10 @@ list<position> Chessboard::getPossibleDestinations(const position from)
                 {
                     lista_.push_back(dest);
                 }
+                else
+                {
+                    break;
+                }
             }
         }
         // movimento horizontal ( pelas cols)
@@ -439,6 +459,10 @@ list<position> Chessboard::getPossibleDestinations(const position from)
                 if (isValidMove(from, dest) && retPiece(dest.row, dest.col).getColor() != retPiece(from.row, from.col).getColor())
                 {
                     lista_.push_back(dest);
+                }
+                else
+                {
+                    break;
                 }
             }
         }
