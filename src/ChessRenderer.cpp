@@ -23,7 +23,7 @@ ChessRenderer::ChessRenderer(Chessboard &chboard) : board(chboard)
   isPieceSelected = false;
 
   InitWindow(pixels, pixels, "Chess");
-
+  shouldclose = false;
   SetTargetFPS(30);  
   // LOAD TEXTURES
   BISHOP_BLACK = LoadTextureFromImage(LoadImage("./assets/images/chess_pieces/BISHOP_BLACK.png"));
@@ -62,6 +62,7 @@ ChessRenderer::~ChessRenderer()
 void ChessRenderer::render()
 {
   BeginDrawing();
+  shouldclose = WindowShouldClose();
   // renderiza o fundo
   for (int row = 0; row < size; row++)
   {
@@ -161,17 +162,16 @@ void ChessRenderer::renderPiece(const Texture2D pieceTexture, const int col, con
 
 bool ChessRenderer::shouldClose() const
 {
-  return WindowShouldClose();
+  return shouldclose;
 }
 
-position ChessRenderer::handleMouseInput(bool& close)
+position ChessRenderer::handleMouseInput()
 {
   position aux = {0,0};
   bool click = false;
   while( click != true ){
 
     if(shouldClose() == true){
-      close = true;
       break;
     }
     render();

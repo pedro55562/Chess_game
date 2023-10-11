@@ -59,13 +59,13 @@ public:
 
 // retorna a posição em um clique do mouse
 // ja convertido de pixels para linhas e colunas
-    position handleMouseInput(bool& shouldclse);
+    position handleMouseInput();
 
 // atualiza qual piece esta selecionada
     void updateSelectedPiece( const position from);
 
 private:
-
+    bool shouldclose;
 // referencia para o tabuleiro do backend
     Chessboard& board; 
 
