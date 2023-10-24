@@ -13,7 +13,7 @@ DEBUG_FLAGS = -O0 -g -DEBUG
 RAYLIB_LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 RAYLIB_INCLUDE = -I/usr/local/include/ 
 
-OBJ = $(addprefix $(BUILD_DIR)/, main.o Chessboard.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o Player.o ChessRenderer.o)
+OBJ = $(addprefix $(BUILD_DIR)/, main.o Chessboard.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o ChessRenderer.o)
 
 $(EXE): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(EXE) $(RAYLIB_LIBS)
